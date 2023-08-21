@@ -1,6 +1,6 @@
 # flutter_my_notes
 
-A new Flutter project.
+Flutter Application of taking notes
 
 ## Getting Started
 

@@ -37,7 +37,8 @@ dependencies:
   lottie:
   isar: *isar_version
   isar_flutter_libs: *isar_version
-
+  auto_animated:
+  auto_animated_list:
 
 
   # The following adds the Cupertino Icons font to your application.

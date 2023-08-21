@@ -4,6 +4,7 @@ import 'package:flutter_my_notes/res/strings.dart';
 import 'package:flutter_my_notes/services/local_db.dart';
 import 'package:flutter_my_notes/views/create_note.dart';
 import 'package:flutter_my_notes/views/widget/empty_view.dart';
+import 'package:flutter_my_notes/views/widget/notes_grid.dart';
 import 'package:flutter_my_notes/views/widget/notes_list.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -48,14 +49,20 @@ class _HomeViewState extends State<HomeView> {
             // const EmptyView(),
             Expanded(
               child: StreamBuilder<List<Note>>(
-                  stream: LocalDbServices().listenAllNotes(),
-                  builder: (context, snapshot) {
-                    if (snapshot.data == null) {
-                      return const EmptyView();
-                    }
-                    final notes = snapshot.data!;
-                    return NotesList(notes: notes);
-                  }),
+                stream: LocalDbServices().listenAllNotes(),
+                builder: (context, snapshot) {
+                  if (snapshot.data == null) {
+                    return const EmptyView();
+                  }
+                  final notes = snapshot.data!;
+                  return AnimatedSwitcher(
+                    duration: const Duration(milliseconds: 300),
+                    child: isListView
+                        ? NotesList(notes: notes)
+                        : NotesGrid(notes: notes),
+                  );
+                },
+              ),
             )
           ],
         ),

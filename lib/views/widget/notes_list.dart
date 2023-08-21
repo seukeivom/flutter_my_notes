@@ -1,3 +1,4 @@
+import 'package:auto_animated_list/auto_animated_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_my_notes/model/note.dart';
 import 'package:flutter_my_notes/views/widget/note_list_item.dart';
@@ -8,11 +9,14 @@ class NotesList extends StatelessWidget {
   final List<Note> notes;
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
+    return AutoAnimatedList<Note>(
       padding: const EdgeInsets.all(20),
-      itemCount: notes.length,
-      itemBuilder: (context, index) {
-        return NoteListItem(note: notes[index]);
+      items: notes,
+      itemBuilder: (context, note, index, animation) {
+        return SizeFadeTransition(
+          animation: animation,
+          child: NoteListItem(note: notes[index]),
+        );
       },
     );
   }

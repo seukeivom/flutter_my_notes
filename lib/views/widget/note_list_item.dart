@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_my_notes/model/note.dart';
+import 'package:flutter_my_notes/views/create_note.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class NoteListItem extends StatelessWidget {
@@ -14,7 +15,10 @@ class NoteListItem extends StatelessWidget {
         const SizedBox(height: 10),
         MaterialButton(
           padding: EdgeInsets.zero,
-          onPressed: () {},
+          onPressed: () {
+            Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => CreateNoteView(note: note)));
+          },
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10.0),
           ),
